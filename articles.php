@@ -1,17 +1,17 @@
 <?php
 session_start();
-$connexion = mysqli_connect("localhost", "root", "", "blog");
+$connexion = mysqli_connect("db5000890310.hosting-data.io", "dbu594451", "S26n6j29p20m13!", "dbs781078");
 
 if ( isset($_GET["start"]) ) {
     $start = $_GET["start"];
     if ( isset($_GET["categorie"]) ) {
         $categorie = $_GET["categorie"];
-        $requeterecuparticles = "SELECT articles.id, articles.article, articles.id_utilisateur, articles.id_categorie, articles.date, articles.titre, articles.img, utilisateurs.login, utilisateurs.id_droits FROM articles INNER JOIN utilisateurs ON utilisateurs.id = id_utilisateur WHERE id_categorie = $categorie ORDER BY date DESC LIMIT 5 OFFSET $start";
-        $requetecount = "SELECT COUNT(*) FROM articles WHERE id_categorie = $categorie";
+        $requeterecuparticles = "SELECT blog_articles.id, blog_articles.article, blog_articles.id_utilisateur, blog_articles.id_categorie, blog_articles.date, blog_articles.titre, blog_articles.img, blog_utilisateurs.login, blog_utilisateurs.id_droits FROM blog_articles INNER JOIN blog_utilisateurs ON blog_utilisateurs.id = id_utilisateur WHERE id_categorie = $categorie ORDER BY date DESC LIMIT 5 OFFSET $start";
+        $requetecount = "SELECT COUNT(*) FROM blog_articles WHERE id_categorie = $categorie";
     }
     else {
-        $requeterecuparticles = "SELECT articles.id, articles.article, articles.id_utilisateur, articles.id_categorie, articles.date, articles.titre, articles.img, utilisateurs.login, utilisateurs.id_droits FROM articles INNER JOIN utilisateurs ON utilisateurs.id = id_utilisateur ORDER BY date DESC LIMIT 5 OFFSET $start";
-        $requetecount = "SELECT COUNT(*) FROM articles";
+        $requeterecuparticles = "SELECT blog_articles.id, blog_articles.article, blog_articles.id_utilisateur, blog_articles.id_categorie, blog_articles.date, blog_articles.titre, blog_articles.img, blog_utilisateurs.login, blog_utilisateurs.id_droits FROM blog_articles INNER JOIN blog_utilisateurs ON blog_utilisateurs.id = id_utilisateur ORDER BY date DESC LIMIT 5 OFFSET $start";
+        $requetecount = "SELECT COUNT(*) FROM blog_articles";
     }
     $querycount = mysqli_query($connexion, $requetecount);
     $resultatcount = mysqli_fetch_all($querycount);

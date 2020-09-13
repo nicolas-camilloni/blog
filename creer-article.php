@@ -3,7 +3,7 @@
     session_start();
     date_default_timezone_set('Europe/Paris');
     $is10car = false;
-    $connexion = mysqli_connect("localhost", "root", "", "blog");
+    $connexion = mysqli_connect("db5000890310.hosting-data.io", "dbu594451", "S26n6j29p20m13!", "dbs781078");
 
 ?>
 <!DOCTYPE html>
@@ -18,10 +18,10 @@
  <?php include("header.php"); ?>
     <main>
     <?php
-      $requete = "SELECT * FROM utilisateurs WHERE login ='".$_SESSION['login']."'";
+      $requete = "SELECT * FROM blog_utilisateurs WHERE login ='".$_SESSION['login']."'";
       $query = mysqli_query($connexion, $requete);
       $resultat = mysqli_fetch_all($query);
-      $requetecat= "SELECT * FROM categories ORDER BY id ASC";
+      $requetecat= "SELECT * FROM blog_categories ORDER BY id ASC";
       $querycat = mysqli_query($connexion, $requetecat);
       $resultatcat = mysqli_fetch_all($querycat, MYSQLI_ASSOC);
 
@@ -114,7 +114,7 @@
             }
         }
         if ( $go == true ) {
-            $requete2 = "INSERT INTO articles (article, id_utilisateur, id_categorie, date, titre, img) VALUES ('$remsg', ".$resultat[0][0].", '$categorie','".date("Y-m-d H:i:s")."', '$retitre', '$target_file')";
+            $requete2 = "INSERT INTO blog_articles (article, id_utilisateur, id_categorie, date, titre, img) VALUES ('$remsg', ".$resultat[0][0].", '$categorie','".date("Y-m-d H:i:s")."', '$retitre', '$target_file')";
             $query2 = mysqli_query($connexion, $requete2);
             echo $requete2;
         }

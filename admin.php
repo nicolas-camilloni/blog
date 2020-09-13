@@ -11,19 +11,19 @@ if (isset($_GET["deco"])) {
     header('Location:index.php');
 }
 
-$connexion = mysqli_connect("localhost", "root", "", "blog");
+$connexion = mysqli_connect("db5000890310.hosting-data.io", "dbu594451", "S26n6j29p20m13!", "dbs781078");
 
-$requeteArticles = "SELECT * FROM articles";
+$requeteArticles = "SELECT * FROM blog_articles";
 $queryArticles = mysqli_query($connexion,$requeteArticles);
 $resultatArticles = mysqli_fetch_all($queryArticles);
 $countArticles = count($resultatArticles);
 
-$requeteCateNb = "SELECT * FROM categories";
+$requeteCateNb = "SELECT * FROM blog_categories";
 $queryCateNb = mysqli_query($connexion,$requeteCateNb);
 $resultatCateNb = mysqli_fetch_all($queryCateNb);
 $countCateNb = count($resultatCateNb);
 
-$requeteUsers = "SELECT * FROM utilisateurs";
+$requeteUsers = "SELECT * FROM blog_utilisateurs";
 $queryUsers = mysqli_query($connexion,$requeteUsers);
 $resultatUsers = mysqli_fetch_all($queryUsers);
 $countUsers = count($resultatUsers);
@@ -80,7 +80,7 @@ if(isset($_SESSION['login']) && $_SESSION['droits'] == 1337)
 
         if(isset($_POST["supprimerArticle$idArticle"]))
         {
-            $deleteArticle ="DELETE FROM articles WHERE id = '".$idArticle."'";
+            $deleteArticle ="DELETE FROM blog_articles WHERE id = '".$idArticle."'";
             $queryDeletedArticle = mysqli_query($connexion,$deleteArticle);
             header('Location:admin.php');
         }
@@ -99,14 +99,14 @@ if(isset($_SESSION['login']) && $_SESSION['droits'] == 1337)
         if(isset($_POST["envoyerCateModif$idCate"]) && strlen($_POST["cateModifier$idCate"]) != 0)
         {
             $updateCatePost = $_POST["cateModifier$idCate"];
-            $updateCate ="UPDATE categories SET nom = '".$updateCatePost."' WHERE nom='".$nomCate."'";
+            $updateCate ="UPDATE blog_categories SET nom = '".$updateCatePost."' WHERE nom='".$nomCate."'";
             $queryUpdateCate =mysqli_query($connexion,$updateCate);
             header('Location:admin.php?phrase=ok');
         }
         
         if(isset($_POST["supprimerCate$idCate"]))
             {
-                $deleteCate ="DELETE FROM categories WHERE id = '".$idCate."'";
+                $deleteCate ="DELETE FROM blog_categories WHERE id = '".$idCate."'";
                 $queryDeletedCate = mysqli_query($connexion,$deleteCate);
                 header('Location:admin.php?phrase=ok');
             }
@@ -144,7 +144,7 @@ if(isset($_SESSION['login']) && $_SESSION['droits'] == 1337)
     if(isset($_POST['envoyerCategorie']) && strlen($_POST['ajoutCategorie']) != 0)
     {
         $cate = $_POST['ajoutCategorie'];
-        $requeteCate = "INSERT INTO categories (nom) VALUES('".$cate."')";
+        $requeteCate = "INSERT INTO blog_categories (nom) VALUES('".$cate."')";
         $queryCate = mysqli_query($connexion,$requeteCate);
         $phraseok = "<span class=\"green center\">La catégorie a été créé avec succès.</span>";
         header('Location:admin.php?phrase=ok');
@@ -161,7 +161,7 @@ if(isset($_SESSION['login']) && $_SESSION['droits'] == 1337)
         {
             if($resultatUsers[$nbUsers][1] == $upAdmin && $resultatUsers[$nbUsers][4] != 1337)
             {
-                $updateDroitAdmin = "UPDATE utilisateurs SET id_droits = 1337 WHERE login = '".$upAdmin."'";
+                $updateDroitAdmin = "UPDATE blog_utilisateurs SET id_droits = 1337 WHERE login = '".$upAdmin."'";
                 $queryDroitAdmin = mysqli_query($connexion,$updateDroitAdmin);
                 $phraseok = "<span class=\"green center\">L'administrateur a été ajouté avec succès.</span>";
                 header('Location:admin.php?phrase=ok');
@@ -178,7 +178,7 @@ if(isset($_SESSION['login']) && $_SESSION['droits'] == 1337)
         {
             if($resultatUsers[$nbUsers][1] == $upModo && $resultatUsers[$nbUsers][4] != 42)
             {
-                $updateDroitModo = "UPDATE utilisateurs SET id_droits = 42 WHERE login = '".$upModo."'";
+                $updateDroitModo = "UPDATE blog_utilisateurs SET id_droits = 42 WHERE login = '".$upModo."'";
                 $queryDroitModo = mysqli_query($connexion,$updateDroitModo);
                 $phraseok = "<span class=\"green center\">Le modérateur a été ajouté avec succès.</span>";
                 header('Location:admin.php?phrase=ok');
@@ -195,7 +195,7 @@ if(isset($_SESSION['login']) && $_SESSION['droits'] == 1337)
         {
             if($resultatUsers[$nbUsers][0] != 1 && $resultatUsers[$nbUsers][1] == $upMembre && $resultatUsers[$nbUsers][4] != 1)
             {
-                $updateDroitMembre = "UPDATE utilisateurs SET id_droits = 1 WHERE login = '".$upMembre."'";
+                $updateDroitMembre = "UPDATE blog_utilisateurs SET id_droits = 1 WHERE login = '".$upMembre."'";
                 $queryDroitMembre = mysqli_query($connexion,$updateDroitMembre);
                 $phraseok = "<span class=\"green center\">Le Membre a été ajouté avec succès.</span>";
                 header('Location:admin.php?phrase=ok');

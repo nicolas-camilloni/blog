@@ -17,8 +17,8 @@ session_start();
             <?php
             if (isset($_SESSION['login']))
             {
-                $connexion = mysqli_connect("localhost", "root", "", "blog");
-                $requete = "SELECT * FROM utilisateurs WHERE login='" . $_SESSION['login'] . "'";
+                $connexion = mysqli_connect("db5000890310.hosting-data.io", "dbu594451", "S26n6j29p20m13!", "dbs781078");
+                $requete = "SELECT * FROM blog_utilisateurs WHERE login='" . $_SESSION['login'] . "'";
                 $query = mysqli_query($connexion, $requete);
                 $resultat = mysqli_fetch_assoc($query);
 
@@ -55,12 +55,12 @@ session_start();
                         } 
                         elseif(isset($_POST['passwordx']) && !empty($_POST['passwordx'])){
                             $pwdx = password_hash($_POST['passwordx'], PASSWORD_BCRYPT, array('cost' => 12));
-                            $updatepwd = "UPDATE utilisateurs SET password = '$pwdx' WHERE id = '" . $resultat['id'] . "'";
+                            $updatepwd = "UPDATE blog_utilisateurs SET password = '$pwdx' WHERE id = '" . $resultat['id'] . "'";
                             $query2 = mysqli_query($connexion, $updatepwd); # Execution de la requête;
                             header('Location:profil.php');
                         }
                         $login = $_POST["login"];
-                        $req = "SELECT login,email FROM utilisateurs WHERE login = '$login'";
+                        $req = "SELECT login,email FROM blog_utilisateurs WHERE login = '$login'";
                         $req3 = mysqli_query($connexion, $req);
                         $veriflog = mysqli_fetch_all($req3);
                             if(!empty($veriflog))
@@ -71,7 +71,7 @@ session_start();
                             }
                         if(empty($veriflog) || ($_SESSION['login'] == $_POST['login']))
                             {
-                                $updatelog = "UPDATE utilisateurs SET login ='" . $_POST['login'] . "', email ='" . $_POST['email'] . "' WHERE id = '" . $resultat['id'] . "'";
+                                $updatelog = "UPDATE blog_utilisateurs SET login ='" . $_POST['login'] . "', email ='" . $_POST['email'] . "' WHERE id = '" . $resultat['id'] . "'";
                                 $querylog = mysqli_query($connexion, $updatelog); # Execution de la requête;
                                 $_SESSION['login']=$_POST['login'];
                                 header("Location:profil.php");

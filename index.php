@@ -8,8 +8,8 @@ if (isset($_GET["deco"])) {
     header('Location:index.php');
 }
 
-$cnx = mysqli_connect("localhost", "root", "", "blog");
-$requete = "SELECT * FROM articles ORDER BY id DESC LIMIT 3";
+$cnx = mysqli_connect("db5000890310.hosting-data.io", "dbu594451", "S26n6j29p20m13!", "dbs781078");
+$requete = "SELECT * FROM blog_articles ORDER BY id DESC LIMIT 3";
 $query = mysqli_query($cnx, $requete);
 $resultat = mysqli_fetch_all($query, MYSQLI_ASSOC);
 $size = count($resultat);
@@ -40,7 +40,7 @@ $size = count($resultat);
         </article>
         <?php
         $iduser = $resultat[$i]['id_utilisateur'];
-        $requeteuser = "SELECT login FROM utilisateurs WHERE id = $iduser";
+        $requeteuser = "SELECT login FROM blog_utilisateurs WHERE id = $iduser";
         $queryuser = mysqli_query($cnx, $requeteuser);
         $resultatuser = mysqli_fetch_all($queryuser, MYSQLI_ASSOC);
         ?>
@@ -78,13 +78,13 @@ $size = count($resultat);
             <h1>Catégories</h1>
             <ul>
             <?php
-            $requeterecupcategories = "SELECT nom FROM categories";
+            $requeterecupcategories = "SELECT nom FROM blog_categories";
             $queryrecupcategories = mysqli_query($cnx, $requeterecupcategories);
             $resultatrecupcategories = mysqli_fetch_all($queryrecupcategories);
             $i = 1;
             foreach ( $resultatrecupcategories as $values ) {
                 ?>
-                <li><span>></span> <a href="articles?start=0&categorie=<?php echo $i; ?>"><?php echo $values[0]; ?></a></li>
+                <li><span>></span> <a href="articles.php?start=0&categorie=<?php echo $i; ?>"><?php echo $values[0]; ?></a></li>
                 <?php
                 $i++;
             }

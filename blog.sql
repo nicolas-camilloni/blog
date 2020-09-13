@@ -21,8 +21,7 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `blog`
 --
-CREATE DATABASE IF NOT EXISTS `blog` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `blog`;
+
 
 -- --------------------------------------------------------
 
@@ -30,8 +29,10 @@ USE `blog`;
 -- Structure de la table `articles`
 --
 
-DROP TABLE IF EXISTS `articles`;
-CREATE TABLE IF NOT EXISTS `articles` (
+USE dbs781078;
+
+DROP TABLE IF EXISTS `blog_articles`;
+CREATE TABLE IF NOT EXISTS `blog_articles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `article` text NOT NULL,
   `id_utilisateur` int(11) NOT NULL,
@@ -46,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `articles` (
 -- Déchargement des données de la table `articles`
 --
 
-INSERT INTO `articles` (`id`, `article`, `id_utilisateur`, `id_categorie`, `date`, `titre`, `img`) VALUES
+INSERT INTO `blog_articles` (`id`, `article`, `id_utilisateur`, `id_categorie`, `date`, `titre`, `img`) VALUES
 (14, 'Fukuoka Japon â€“ Je vous emmÃ¨ne aujourdâ€™hui dans la ville de Fukuoka dans laquelle nous allons nous balader le temps dâ€™un article. La ville se trouve au nord de lâ€™Ã®le de Kyushu qui est dâ€™ailleurs une de mes rÃ©gions favorites au Japon. Câ€™est la plus grande ville de Kyushu et grace Ã  son aÃ©roport international, câ€™est une des principales portes dâ€™entrÃ©e de lâ€™Ã®le.\r\n\r\nFukuoka a Ã©galement une histoire riche et une culture unique. Câ€™est par exemple par la baie de Fukuoka que les mongols ont tentÃ© dâ€™envahir le Japon Ã  partir du 13 Ã¨me siÃ¨cle. Et mystÃ¨re de lâ€™histoire, les mongols Ã©chouÃ¨rent 2 fois dans leur attaque Ã  cause de typhons. Un hasard ? Les Japonais ne pensent pas vraiment que câ€™est une coincidence et ils ont dâ€™ailleurs nommÃ© la derniÃ¨re tempÃªte qui arrÃªta les mongols â€œKamikazeâ€, littÃ©ralement le vent divin.\r\n\r\nDe plus, en prenant une carte, on comprend bien que Fukuoka a une position stratÃ©gique. Elle bÃ©nÃ©ficie en effet dâ€™une ouverture maritime sur la Chine et la CorÃ©e et je pense que Ã§a a jouÃ© un grand rÃ´le dans la culture locale. En effet, jâ€™ai trouvÃ© les habitants de Fukuoka trÃ¨s ouverts et vraiment sympathiques. Autre petite anecdote, on dit que les filles de Fukuoka sont les plus belles du Japon et je vous laisse vous faire votre propre idÃ©e. ðŸ˜€\r\n\r\nAllez, trÃªve de plaisanterie, dÃ©couvrons maintenant comment aller Ã  Fukuoka et oÃ¹ y dormir. Je vous dirai ensuite quels ont Ã©tÃ© les 10 endroits que jâ€™y ai prÃ©fÃ©rÃ©. Câ€™est parti !', 1, 1, '2020-02-26 08:58:00', 'Fukuoka Japon', 'img/pFukuoka Japon.png'),
 (15, 'Nusa Lembongan Bali â€“ Sur la cÃ´te Sud-Est de Bali, on trouve un joli petit groupe dâ€™Ã®les composÃ© de la plus grande, Nusa Penida, et de ses 2 petites soeurs Nusa Lembongan et Nusa Ceningan. Et dans ce trio, Nusa Lembongan est celle qui offre lâ€™ambiance la plus calme et la plus relaxante.\r\n\r\nHistoriquement, cette Ã®le Ã©tait un trÃ©sor cachÃ© des surfeurs qui sâ€™y rendaient pour sâ€™entrainer et pour se relaxer sur ses jolis plages de sable blanc. Mais petit Ã  petit, la popularitÃ© de Nusa Lembongan a commencÃ© Ã  grandir et cette Ã®le est aujourdâ€™hui un des coins prÃ©fÃ©rÃ©s des visiteurs de Bali.\r\n\r\nImportante remarque avant de rentrer dans le vif du sujet. Lâ€™Ã®le de Nusa Lembongan nâ€™a pas beaucoup dâ€™endroits pour faire la fÃªte le soir. Donc si câ€™est ce que vous recherchez, allez plutÃ´t Ã  Semiyak ou encore Canggu oÃ¹ on peut trouver des beach bars sympas. Par contre, si vous recherchez de la tranquillitÃ© et que vous voulez vous ressourcer dans un endroit superbe, Nusa Lembongan vous ira parfaitement !\r\n\r\nAllez, je vous donne sans plus attendre mes conseils pour visiter cette jolie Ã®le en commenÃ§ant par le transport et le logement. Je finirai ensuite avec une liste des activitÃ©s Ã  faire Ã  Nusa Lembongan.', 1, 1, '2020-02-26 09:07:46', 'Nusa Lembongan Bali', 'img/pNusa Lembongan Bali.png'),
 (12, 'Lâ€™Ouest Canadienâ€¦Rien que dâ€™Ã©crire ou dâ€™Ã©noncer cette partie du monde, Ã§a me fait rÃªver. Et ce depuis toujours. Cette partie du Canada, ce road trip me paraissait, il y a encore quelques mois, comme inaccessible. Trop loin, trop beau, trop toutâ€¦ Jâ€™en avais trop rÃªvÃ© pour rÃ©ussir Ã  mâ€™imaginer lÃ -bas un jourâ€¦Et pourtant. Jâ€™y suis allÃ©e, nous y sommes allÃ©s, enfin.\r\nÃ‡a a commencÃ© lâ€™an dernier, en 2018, Ã  lâ€™occasion dâ€™un salon professionnel du tourisme appelÃ© le GoMedia. Un Salon auquel nous avons participÃ© avec le soutien de Destination Canada. Cette semaine de salon avait Ã©tÃ© prÃ©cÃ©dÃ©e de ce que lâ€™on appelle dans le domaine Â« un Ã©ductour Â» ou plutÃ´t un voyage de presse ou encore blogtrip. Ces quelques jours avaient permis Ã  plusieurs professionnels du tourisme, du monde entier de dÃ©couvrir des provinces du Canada.\r\n\r\nÃ‰videment nous, nous avions choisi lâ€™Alberta. Nous sommes tombÃ©s avec des journalistes et blogueurs de tout horizon avec qui nous avons passÃ© 4 jours intenses Ã  explorer et surtout rireâ€¦\r\nMais ce nâ€™Ã©tait que 4 joursâ€¦4 petits jours qui sont passÃ©s si vite quâ€™ils semblaient Ãªtre rÃªvÃ©s. Alors, Ã©videment, nous avons eu envie dâ€™y retourner. TrÃ¨s vite.\r\n\r\nCâ€™est donc en Juin dernier, que nous sommes repartis dans lâ€™Ouest Canadien. Cette fois pour un Road trip de 15 jours entre lâ€™Alberta et la Colombie Britannique. 15 jours de nature, de randonnÃ©es, de paysages Ã  couper le souffle et de kilomÃ¨tres Ã  parcourir sur les plus belles routes du monde, voilÃ  quel Ã©tait le programme.\r\nEn retouchant les photos de cet article, jâ€™Ã©tais dÃ©jÃ  nostalgique de ce voyage tant il Ã©tait incroyable. Il me tardait de vous le partagerâ€¦\r\n\r\nDans cet article, vous trouverez notre itinÃ©raire et nos conseils pour un road trip en Alberta. Jâ€™y glisse vraiment tout notre parcours. Un second article sera dÃ©diÃ© exclusivement pour la Colombie Britannique.\r\n\r\nJâ€™espÃ¨re que celui-ci vous permettra dâ€™organiser comme il se doit, votre voyage dans lâ€™Ouest canadien !', 1, 1, '2020-02-25 12:29:52', 'ROAD TRIP DANS Lâ€™OUEST CANADIEN', 'img/pROAD TRIP DANS Lâ€™OUEST CANADIEN.png'),
@@ -62,8 +63,8 @@ INSERT INTO `articles` (`id`, `article`, `id_utilisateur`, `id_categorie`, `date
 -- Structure de la table `categories`
 --
 
-DROP TABLE IF EXISTS `categories`;
-CREATE TABLE IF NOT EXISTS `categories` (
+DROP TABLE IF EXISTS `blog_categories`;
+CREATE TABLE IF NOT EXISTS `blog_categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(80) NOT NULL,
   PRIMARY KEY (`id`)
@@ -73,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
 -- Déchargement des données de la table `categories`
 --
 
-INSERT INTO `categories` (`id`, `nom`) VALUES
+INSERT INTO `blog_categories` (`id`, `nom`) VALUES
 (1, 'Destinations'),
 (2, 'Conseils'),
 (3, 'Recommandations');
@@ -84,8 +85,8 @@ INSERT INTO `categories` (`id`, `nom`) VALUES
 -- Structure de la table `commentaires`
 --
 
-DROP TABLE IF EXISTS `commentaires`;
-CREATE TABLE IF NOT EXISTS `commentaires` (
+DROP TABLE IF EXISTS `blog_commentaires`;
+CREATE TABLE IF NOT EXISTS `blog_commentaires` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `commentaire` varchar(1024) NOT NULL,
   `id_article` int(11) NOT NULL,
@@ -98,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `commentaires` (
 -- Déchargement des données de la table `commentaires`
 --
 
-INSERT INTO `commentaires` (`id`, `commentaire`, `id_article`, `id_utilisateur`, `date`) VALUES
+INSERT INTO `blog_commentaires` (`id`, `commentaire`, `id_article`, `id_utilisateur`, `date`) VALUES
 (1, 'sqdqd qsd qsd qsd qsd qsd ', 1, 1, '2020-02-12 09:57:13'),
 (2, 'sqdq sqdq sq qsd qsd qs sq dqs ', 2, 1, '2020-02-12 10:13:57'),
 (4, 'Test test test test', 19, 1, '2020-02-26 15:18:04'),
@@ -112,8 +113,8 @@ INSERT INTO `commentaires` (`id`, `commentaire`, `id_article`, `id_utilisateur`,
 -- Structure de la table `droits`
 --
 
-DROP TABLE IF EXISTS `droits`;
-CREATE TABLE IF NOT EXISTS `droits` (
+DROP TABLE IF EXISTS `blog_droits`;
+CREATE TABLE IF NOT EXISTS `blog_droits` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(80) NOT NULL,
   PRIMARY KEY (`id`)
@@ -123,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `droits` (
 -- Déchargement des données de la table `droits`
 --
 
-INSERT INTO `droits` (`id`, `nom`) VALUES
+INSERT INTO `blog_droits` (`id`, `nom`) VALUES
 (1, 'utilisateur'),
 (42, 'modérateur'),
 (1337, 'administrateur');
@@ -134,8 +135,8 @@ INSERT INTO `droits` (`id`, `nom`) VALUES
 -- Structure de la table `utilisateurs`
 --
 
-DROP TABLE IF EXISTS `utilisateurs`;
-CREATE TABLE IF NOT EXISTS `utilisateurs` (
+DROP TABLE IF EXISTS `blog_utilisateurs`;
+CREATE TABLE IF NOT EXISTS `blog_utilisateurs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `login` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
@@ -148,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
 -- Déchargement des données de la table `utilisateurs`
 --
 
-INSERT INTO `utilisateurs` (`id`, `login`, `password`, `email`, `id_droits`) VALUES
+INSERT INTO `blog_utilisateurs` (`id`, `login`, `password`, `email`, `id_droits`) VALUES
 (1, 'admin', '$2y$12$SihxPWnwCdgyghXlSGJzSOUJThXAZHpW0ErnrUccgjB6NWHRwwy0G', 'admin@blog.com', 1337),
 (2, 'Nico', '$2y$12$JhhJTug312Gq0LgLEKAIl.EPtCyGYEL4X3oUxCLC8PHgunTOnt68a', 'nico@gmail.com', 42),
 (3, 'salut', '$2y$12$oLcmv3ZcGeQgUlGIv9leMO14czE/lmOA7sIb.RpU4ZkQXq4.Ti6gG', 'salut@gmail.com', 1);
@@ -159,8 +160,8 @@ INSERT INTO `utilisateurs` (`id`, `login`, `password`, `email`, `id_droits`) VAL
 -- Structure de la table `votes`
 --
 
-DROP TABLE IF EXISTS `votes`;
-CREATE TABLE IF NOT EXISTS `votes` (
+DROP TABLE IF EXISTS `blog_votes`;
+CREATE TABLE IF NOT EXISTS `blog_votes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_message` int(11) NOT NULL,
   `id_utilisateur` int(11) NOT NULL,
@@ -172,7 +173,7 @@ CREATE TABLE IF NOT EXISTS `votes` (
 -- Déchargement des données de la table `votes`
 --
 
-INSERT INTO `votes` (`id`, `id_message`, `id_utilisateur`, `valeur`) VALUES
+INSERT INTO `blog_votes` (`id`, `id_message`, `id_utilisateur`, `valeur`) VALUES
 (2, 1, 1, 1),
 (10, 7, 1, 1),
 (11, 6, 1, 1),

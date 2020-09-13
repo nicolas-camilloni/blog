@@ -49,8 +49,8 @@
                     $login = $_POST["login"];
                     $mdp = password_hash($_POST["mdp"], PASSWORD_BCRYPT, array('cost' => 12));
                     $email = $_POST["email"];
-                    $connexion = mysqli_connect("localhost", "root", "", "blog");
-                    $requete3 = "SELECT login FROM utilisateurs WHERE login = '$login'";
+                    $connexion = mysqli_connect("db5000890310.hosting-data.io", "dbu594451", "S26n6j29p20m13!", "dbs781078");
+                    $requete3 = "SELECT login FROM blog_utilisateurs WHERE login = '$login'";
                     $query3 = mysqli_query($connexion, $requete3);
                     $resultat3 = mysqli_fetch_all($query3);
 
@@ -68,7 +68,7 @@
                     }
                     else 
                     {
-                        $requete = "INSERT INTO utilisateurs (login, password, email, id_droits) VALUES ('$login','$mdp', '$email', 1)";
+                        $requete = "INSERT INTO blog_utilisateurs (login, password, email, id_droits) VALUES ('$login','$mdp', '$email', 1)";
                         $query = mysqli_query($connexion, $requete);
                         header('Location:connexion.php');
                     }

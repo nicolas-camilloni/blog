@@ -1,22 +1,22 @@
 <?php
 session_start();
 ob_start();
-$cnx = mysqli_connect("localhost", "root", "", "blog");
+$cnx = mysqli_connect("db5000890310.hosting-data.io", "dbu594451", "S26n6j29p20m13!", "dbs781078");
 
 if ( isset($_GET["idarticle"]) ) {
     $idarticle = $_GET["idarticle"];
     $intidarticle = intval($idarticle);
-    $requete1 = "SELECT * FROM commentaires WHERE id_article=$intidarticle ORDER BY date ASC";
+    $requete1 = "SELECT * FROM blog_commentaires WHERE id_article=$intidarticle ORDER BY date ASC";
     $query1 = mysqli_query($cnx, $requete1);
     $resultat = mysqli_fetch_all($query1, MYSQLI_ASSOC);
     $taille = sizeof($resultat) - 1;
-    $requetearticle = "SELECT * FROM articles WHERE id=$intidarticle";
+    $requetearticle = "SELECT * FROM blog_articles WHERE id=$intidarticle";
     $queryarticle = mysqli_query($cnx, $requetearticle);
     $resultatarticle = mysqli_fetch_all($queryarticle, MYSQLI_ASSOC);
 }
 
 if ( isset($_SESSION['login']) ) {
-    $requete2 = "SELECT * FROM utilisateurs WHERE login='".$_SESSION['login']."'";
+    $requete2 = "SELECT * FROM blog_utilisateurs WHERE login='".$_SESSION['login']."'";
     $query2 = mysqli_query($cnx, $requete2);
     $resultat2 = mysqli_fetch_all($query2, MYSQLI_ASSOC);
 }
@@ -30,7 +30,7 @@ $is2car = false;
 if ( isset($_POST['envoyer']) == true && isset($_POST['commentaire']) && strlen($_POST['commentaire']) >= 2 ) {
     $msg = $_POST['commentaire'];
     $remsg = addslashes($msg);
-    $requete2 = "INSERT INTO commentaires (commentaire, id_article, id_utilisateur, date) VALUES ('$remsg', '$intidarticle', ".$resultat2[0]['id'].", '".date("Y-m-d H:i:s")."')";
+    $requete2 = "INSERT INTO blog_commentaires (commentaire, id_article, id_utilisateur, date) VALUES ('$remsg', '$intidarticle', ".$resultat2[0]['id'].", '".date("Y-m-d H:i:s")."')";
     $query2 = mysqli_query($cnx, $requete2);
     header("Location: article.php?idarticle=$intidarticle");
     }
@@ -67,7 +67,7 @@ if ( isset($_POST['envoyer']) == true && isset($_POST['commentaire']) && strlen(
                 $iduser = $resultat[$a]['id_utilisateur'];
                 $idcom = $resultat[$a]['id'];
                 $intidcom = intval($idcom);
-                $requetelogin = "SELECT login, email, id_droits FROM utilisateurs WHERE id=$iduser";
+                $requetelogin = "SELECT login, email, id_droits FROM blog_utilisateurs WHERE id=$iduser";
                 $querylogin = mysqli_query($cnx, $requetelogin);
                 $resultatlogin = mysqli_fetch_all($querylogin, MYSQLI_ASSOC);
 
@@ -162,7 +162,7 @@ if ( isset($_POST['envoyer']) == true && isset($_POST['commentaire']) && strlen(
     }
     if (isset($_POST["edita"])) {
        $edited = $_POST["editarticle"];
-       $editrequete = "UPDATE articles SET article = '$edited' WHERE id = $intidarticle";
+       $editrequete = "UPDATE blog_articles SET article = '$edited' WHERE id = $intidarticle";
        $queryedit = mysqli_query($cnx, $editrequete);
        header("Location:article.php?idarticle=$intidarticle");
     }
